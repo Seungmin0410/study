@@ -2,10 +2,11 @@
 
 공부 내용 정리 공간
 
-A space for learning notes
+Space for learning notes
 
 ---
 
 ### Current Focus
 - paper-rag
+- Hardware architecture
 
