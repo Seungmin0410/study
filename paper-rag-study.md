@@ -99,7 +99,8 @@ ANN(Approximate Nearest Neighbor)는 벡터 검색 알고리즘 중 하나로 br
 ANN 검색 방식을 사용했을때 청크가 수백만~수천만개 라면 brute-force 방식보다 훨씬 빠른 속도로 관련 청크들을 가져올수 있다. 하지만 모든 벡터값과 일일히 비교하는건 아니기 때문에 정확도가 떨어질 수 있다.
 
 HNSW(Hierarchical Navigable Small World) -> ANN 알고리즘에 한 종류로 다층 그래프로 연결해서 그리디하게 탐색한다. (메모리를 많이먹고 recall-속도 트레이드 오프 발생 -> ef파라미터(탐색 중 몇 개의 후보를 유지하면서 볼지)에 따라서 낮게 잡으면 스텝이 빨리 끝나 정확도가 떨어지고 높이면 시간이 오래걸리는 문제 발생)
-<img width="300" height="300" alt="스크린샷 2026-08-04 오후 2 04 21" src="https://github.com/user-attachments/assets/e8dbcb93-cd39-43c9-b98c-5f751af42c64" />
+
+<img width="350" height="350" alt="스크린샷 2026-08-04 오후 2 04 21" src="https://github.com/user-attachments/assets/e8dbcb93-cd39-43c9-b98c-5f751af42c64" />
 
 IVF(Inverted File) - k-means 알고리즘으로 무작위 벡터공간에 점 x개를 찍고(중심점) 모든 벡터를 가까운 중심점에 임시로 배정한다. 나중에 질문이 들어오면 x개의 중심점 전부와의 거리를 계산해서 가장 가까운 중심점 몇개를 고르고 상위 그룹에서 비슷한 청크를 고른다.
 
