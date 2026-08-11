@@ -158,7 +158,27 @@ RAW(Read After Write) - 쓰기가 일어나기 전에 읽기를 시도해 생긴
 
 이 단순한 전략이 실제 프로그램에서 꽤 잘 맞는 경우가 있는데, 어떤 상황(어떤 종류의 코드 패턴)에서 이 전략이 잘 맞을 것 같나요? 반대로 이 전략이 자주 틀릴 것 같은 코드 패턴은 뭐가 있을까요? (프로그래밍하면서 봤던 for/while 반복문, if문 등을 떠올려보세요)
 
+예측은 정말 상황에 따라 정적 예측(static prediction), 동적 예측(dynamic prediction) 등으로 다양하게 할 수 있는데 BTFNT는 정적 예측 중 하나이다.
 
+BTFNT = backward taken, forward not-taken
+
+```
+loop_start:
+    print(i);
+    i++;
+    if (i < 3) goto loop_start;
+```
+
+for/while 반복문을 어셈블리로 풀어보면 "루프 조건이 맞으면 다시 코드위로 가서 명령어를 실행" 하는 구조가 된다. 이러한 분기를 backward로 간다고 부르고 for/while 루프는 대부분 참이 되는 조건이 많고 마지막에만 거짓이 되기때문에 무조건 실행될 거다 라고 예측한다.
+
+```
+if (error_occurred) {  
+    handle_error();         
+}
+normal_code();
+```
+
+반대로 if 구문에서는 보통 코드가 위에서 아래로 실행되는, 아래쪽으로 건너뛰는 구조이고 이를 forward 라고한다. 예시처럼 에러체크의 if 구문은 에러가 안날거라고 미리 예측하고 가기때문에 실행이 안될거라고 예측한다.
 
 
 
