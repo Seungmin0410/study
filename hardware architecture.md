@@ -214,8 +214,15 @@ for (int j = 0; j < 5; j++) {
 
 ***1-bit predictor를 안쪽 for문의 분기에 적용한다고 할 때, 각 바깥쪽 루프가 새로 시작할 때마다(즉 안쪽 루프가 다시 0부터 시작할 때마다) 예측이 맞을지 틀릴지 짐작해보세요. 특히 "안쪽 루프가 끝나고(i=3, not-taken) 다시 새 바깥 루프가 시작해서 i=0이 될 때(taken)" 이 경계 지점에서 무슨 일이 생길지 생각해보세요.***
 
+처음을 T로 시작했다고 가졍했을때 아래와 같은 결과가 나온다.       
+<img width="650" height="764" alt="스크린샷 2026-08-18 오후 5 08 43" src="https://github.com/user-attachments/assets/d557d699-6e21-4fc7-9fb9-e23e4535df47" />
 
+결과값을 살펴보면 1-bit predictor에 정확성은 특히 안쪽 루프가 끝나고 다시 새 바깥 루프가 시작될때 무조건 틀리기때문에 정확도가 많이 떨어진다.
 
+이러한 문제를 해결하기위해 2-bit predictor를 사용하기도한다. 2-bit predictor는 이름과 같이 이전 2단계를 기억하는것으로: 11(strong taken), 10(weakly taken), 01(weakly not taken), 00(strongly not taken) 4개의 단계로 좀 더 세분화 시켜서 저장한다.          
+<img width="642" height="763" alt="스크린샷 2026-08-18 오후 5 10 28" src="https://github.com/user-attachments/assets/33f97ae1-4b5c-4947-87d6-1ea88c81a626" />
+
+두개의 결과값을 비교하면 2-bit predictor의 정확도가 확연히 높은 것을 확인할 수 있다. 하지만 위 예시들은 동적 예측이라는 큰 카테고리 안에 어떤 구체적인 기법들이 존재하나 소개하는 것에 가깝고 상황에 따라 맞는 동적 예측을 하는 것이 중요하다.
 
 
 
