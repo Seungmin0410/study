@@ -7,6 +7,7 @@ Space for learning notes
 ---
 
 ### Current Focus
-- paper-rag
-- Hardware architecture
+- Predictive Modeling and Simulation
+- Paper-RAG
+- Hardware Architecture
 
